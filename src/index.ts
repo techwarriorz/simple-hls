@@ -1,9 +1,12 @@
-const {spawn} = require('child_process');
-const DefaultRenditions = require('./default-renditions');
-const fs = require('fs');
+import {spawn} from 'child_process';
+import DefaultRenditions from './default-renditions';
+import fs from 'fs';
 
 class Transcoder {
-    constructor(inputPath, outputPath, options){
+    inputPath: string;
+    outputPath: string;
+    options: any;
+    constructor(inputPath : string, outputPath : string, options : any){
         this.inputPath = inputPath;
         this.outputPath = outputPath;
         this.options = options;
@@ -11,19 +14,20 @@ class Transcoder {
 
     transcode(){
       return new Promise(async (resolve, reject) =>  {
-        const commands = await this.buildCommands();
+        const commands : any  = await this.buildCommands();
         const masterPlaylist = await this.writePlaylist();
         const ls = spawn('ffmpeg', commands);
-        ls.stdout.on('data', (data) =>  {
+        ls.stdout.on('data', (data: any) =>  {
           console.log(data.toString());
         });
 
-        ls.stderr.on('data', (data) =>  {
+        ls.stderr.on('data', (data: any) =>  {
           console.error(data.toString());
         });
 
-        ls.on('exit', (code) =>  {
+        ls.on('exit', (code: any) =>  {
           console.log(`Child exited with code ${code}`);
+          resolve(masterPlaylist);
         })
       })
     }
