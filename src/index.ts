@@ -65,6 +65,8 @@ ${r.height}.m3u8`
     }
 }
 
+export default Transcoder;
+
 
 const t = new Transcoder(`${__dirname}/test.mp4`, `${__dirname}/output`, {});
 t.transcode();
