@@ -1,6 +1,6 @@
 # Simple-HLS
 
-NPM Module is a simple FFMPEG Wrapper that will allow you to easily transcode Multi-bitrate HLS videos.
+Simple-HLS is a simple FFMPEG Wrapper that will allow you to easily transcode Multi-bitrate HLS videos.
 
 # Installation
 
