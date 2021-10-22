@@ -29,7 +29,7 @@ class Transcode {
 
         ls.stderr.on('data', (data: any) =>  {
           if (showLogs){
-            console.error(data.toString());
+            console.log(data.toString());
           }
         });
 

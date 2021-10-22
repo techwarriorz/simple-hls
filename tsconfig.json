@@ -6,9 +6,9 @@
       "outDir": "./lib",
       "strict": true,
       "allowJs": true,
-      "types": ["node"],
+      "types": ["node", "@types/jest"],
       "esModuleInterop": true
     },
     "include": ["src"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+    "exclude": ["node_modules", "**/__tests__/*.test.ts"]
   }
