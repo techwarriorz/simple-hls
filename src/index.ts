@@ -2,14 +2,14 @@ import {spawn} from 'child_process';
 import DefaultRenditions from './default-renditions';
 import fs from 'fs';
 
-class Transcoder {
+class Transcode {
     inputPath: string;
     outputPath: string;
     options: any;
     constructor(inputPath : string, outputPath : string, options : any){
         this.inputPath = inputPath;
         this.outputPath = outputPath;
-        this.options = options;
+        this.options = options || {};
     }
 
     transcode(){
@@ -17,17 +17,27 @@ class Transcoder {
         const commands : any  = await this.buildCommands();
         const masterPlaylist = await this.writePlaylist();
         const ls = spawn('ffmpeg', commands);
+        let showLogs = true;
+        if (this.options.showLogs == false){
+          showLogs = false;
+        }
         ls.stdout.on('data', (data: any) =>  {
-          console.log(data.toString());
+          if (showLogs){
+            console.log(data.toString());
+          }
         });
 
         ls.stderr.on('data', (data: any) =>  {
-          console.error(data.toString());
+          if (showLogs){
+            console.error(data.toString());
+          }
         });
 
         ls.on('exit', (code: any) =>  {
-          console.log(`Child exited with code ${code}`);
-          resolve(masterPlaylist);
+          if (showLogs){
+            console.log(`Child exited with code ${code}`);
+          }
+          return resolve(masterPlaylist);
         })
       })
     }
@@ -65,8 +75,10 @@ ${r.height}.m3u8`
     }
 }
 
-export default Transcoder;
+export const Transcoder = Transcode;
 
 
+/*
 const t = new Transcoder(`${__dirname}/test.mp4`, `${__dirname}/output`, {});
 t.transcode();
+*/

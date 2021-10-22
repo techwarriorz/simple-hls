@@ -1,22 +1,41 @@
 {
     "version": "0.0.1",
-    "name": "node-hls-transcoder",
+    "name": "simple-hls",
     "author": "Rick Dawson",
     "dependencies": {
         "child_process": "^1.0.2",
         "fs": "0.0.1-security",
         "typescript": "^4.4.4"
     },
+    "main": "lib/index.js",
     "scripts": {
         "build": "tsc",
         "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
         "lint": "tslint -p tsconfig.json"
     },
     "devDependencies": {
-        "@types/node": "^16.11.1",
+        "@types/node": "^16.11.3",
         "prettier": "^2.4.1",
         "tslint": "^6.1.3",
         "tslint-config-prettier": "^1.18.0"
     },
-    "files": ["lib/**/*"]
+    "files": [
+        "lib/**/*"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/techwarriorz/simple_hls"
+    },
+    "bugs": {
+        "url": "https://github.com/techwarriorz/simple_hls/issues"
+    },
+    "homepage": "https://github.com/techwarriorz/simple_hls#readme",
+    "license": "ISC",
+    "keywords": [
+        "HLS",
+        "Multibitrate",
+        "Multi Bitrate",
+        "Transcoder",
+        "FFMPEG"
+    ]
 }
