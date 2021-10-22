@@ -35,12 +35,12 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/techwarriorz/simple_hls"
+        "url": "git+https://github.com/techwarriorz/simple-hls"
     },
     "bugs": {
-        "url": "https://github.com/techwarriorz/simple_hls/issues"
+        "url": "https://github.com/techwarriorz/simple-hls/issues"
     },
-    "homepage": "https://github.com/techwarriorz/simple_hls#readme",
+    "homepage": "https://github.com/techwarriorz/simple-hls#readme",
     "license": "ISC",
     "keywords": [
         "HLS",
