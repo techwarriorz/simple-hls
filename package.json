@@ -42,5 +42,6 @@
         "Multi Bitrate",
         "Transcoder",
         "FFMPEG"
-    ]
+    ],
+    "description": "A Multi-Bitrate Transcoding Library for NodeJS."
 }
