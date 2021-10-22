@@ -5,7 +5,7 @@ import fs from 'fs';
 class Transcode {
     inputPath: string;
     outputPath: string;
-    options: any;
+    options: any | undefined;
     constructor(inputPath : string, outputPath : string, options : any){
         this.inputPath = inputPath;
         this.outputPath = outputPath;
@@ -37,7 +37,10 @@ class Transcode {
           if (showLogs){
             console.log(`Child exited with code ${code}`);
           }
-          return resolve(masterPlaylist);
+          if (code == 0) return resolve(masterPlaylist);
+
+          return reject('Video Failed to Transcode');
+          
         })
       })
     }
