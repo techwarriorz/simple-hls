@@ -16,7 +16,7 @@ class Transcode {
       return new Promise(async (resolve, reject) =>  {
         const commands : any  = await this.buildCommands();
         const masterPlaylist = await this.writePlaylist();
-        const ffmpeg = spawn('ffmpeg', commands);
+        const ffmpeg = this.options.ffmpegPath ? spawn(this.options.ffmpegPath, commands) : spawn('ffmpeg', commands)
         let showLogs = true;
         if (this.options.showLogs == false){
           showLogs = false;
