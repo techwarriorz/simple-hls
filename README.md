@@ -22,7 +22,7 @@ To install Simple-HLS for local development, you simply (pun intended) need to r
 
 ## Using Simple-HLS
 
-```
+```ts
 import {Transcoder} from 'simple-hls'
 
 async function transcodeSomething () {
@@ -40,6 +40,28 @@ async function transcodeSomething () {
     }
     
 }
+```
+
+## Specifying FFMPEG PATH  
+
+You can  set the `ffmpegPath` parameter in options, which should point to an ffmpeg binary on your. In instances where that option is supplied, Simple-HLS will use that PATH when spawning ffmpeg.  
+
+If `ffmpegPath` isn't supplied, Simple-HLS will fallback to using the `ffmpeg` command to invoke the ffmpeg subprocess.
+
+Below is an example of how to use [@ffmpeg-installer/ffmpeg](https://www.npmjs.com/package/@ffmpeg-installer/ffmpeg) to use a pre-compiled ffmpeg binary with Simple-HLS.   
+
+```ts
+...
+import ffmpeg from '@ffmpeg-installer/ffmpeg'
+
+const t = new Transcoder(
+    `${__dirname}/test.mp4`, 
+    `${__dirname}/path_to_output_directory`,
+    {
+        showLogs: false,
+        ffmpegPath: ffmpeg.path,
+    })
+...
 ```
 
 # Renditions

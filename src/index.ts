@@ -16,24 +16,24 @@ class Transcode {
       return new Promise(async (resolve, reject) =>  {
         const commands : any  = await this.buildCommands();
         const masterPlaylist = await this.writePlaylist();
-        const ls = spawn('ffmpeg', commands);
+        const ffmpeg = this.options.ffmpegPath ? spawn(this.options.ffmpegPath, commands) : spawn('ffmpeg', commands)
         let showLogs = true;
         if (this.options.showLogs == false){
           showLogs = false;
         }
-        ls.stdout.on('data', (data: any) =>  {
+        ffmpeg.stdout.on('data', (data: any) =>  {
           if (showLogs){
             console.log(data.toString());
           }
         });
 
-        ls.stderr.on('data', (data: any) =>  {
+        ffmpeg.stderr.on('data', (data: any) =>  {
           if (showLogs){
             console.log(data.toString());
           }
         });
 
-        ls.on('exit', (code: any) =>  {
+        ffmpeg.on('exit', (code: any) =>  {
           if (showLogs){
             console.log(`Child exited with code ${code}`);
           }
